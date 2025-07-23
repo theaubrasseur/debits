@@ -28,12 +28,10 @@ dep <- 80 #departement
       deb2 <- get_hydrometrie_obs_elab(code_entite=case,grandeur_hydro_elab="QmnJ",date_debut_obs_elab=as.Date("1951-01-01"),date_fin_obs_elab=as.Date("1999-12-31"))
       deb3 <- get_hydrometrie_obs_elab(code_entite=case,grandeur_hydro_elab="QmnJ",date_debut_obs_elab=as.Date("2000-01-01"))
       deb <- bind_rows(deb1,deb2,deb3)
-      if(nrow(deb) != 0){
-        deb <- deb %>% filter(!is.na(resultat_obs_elab))
-      }
-      
+
       # Si la station contient des donnees, execute la suite de la boucle #
       if(nrow(deb) != 0){
+        deb <- deb %>% filter(!is.na(resultat_obs_elab))
         
       # Filtrage des donnees selon le direct #
       if(direct == 2){
